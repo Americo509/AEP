@@ -1,0 +1,481 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <windows.h>
+#include <conio.c>
+#include <time.h>
+#include <ctype.h>
+#include <locale.h>
+
+char parada, mail[200];
+
+//----------------------------------------------------------------------------
+struct cadastro{
+
+       char nome[200], nomed[200], rua[1000];
+       int cel[20], cpf[20], data[20], cpfd[20], datad[20], rnum[5]; 
+};
+struct cadastro c;
+//----------------------------------------------------------------------------
+void tela(int ci, int li, int cf, int lf, int corL, int corF){
+int i;    
+    textcolor(0);
+    textbackground(15);
+    
+    for (i=ci;i<=cf;i++){ 
+        gotoxy(i,li);  
+        printf("%c",95);
+        gotoxy(i,lf); 
+        printf("%c",95);
+        }
+    for (i=li;i<=lf;i++){ 
+        gotoxy(ci,i); printf("%c",124);
+        gotoxy(cf,i); printf("%c",124);
+       }   
+    gotoxy(ci,li);  printf("%c",160);
+    gotoxy(cf,li);  printf("%c",160);
+    gotoxy(ci,lf);  printf("%c",124);
+    gotoxy(cf,lf);  printf("%c",124);
+    
+    gotoxy(ci+2,li);
+    textcolor(15);
+    textbackground(4);   
+}
+//-----------------------------------------------------------------------------       
+void cadastro(){
+   
+    textcolor(15);
+   textbackground(4);
+   system("cls");
+   tela(10,7,80,25,7,4);
+   
+   textcolor(0);
+   textbackground(15);
+   
+   gotoxy(13,7);printf(" Cadastrando Dados ");
+   
+   textcolor(15);
+   textbackground(4);
+   
+   gotoxy(15,10);printf("Escreva seu nome\n");
+   gotoxy(15,11);printf("->  ");
+   fgets(c.nome, 200, stdin);
+   
+   gotoxy(15,12);printf("Escreva seu celular com ddd\n");
+   gotoxy(15,13);printf("->  ");
+   scanf("%s", &c.cel);
+   fflush(stdin);
+   
+   gotoxy(15,14);printf("Escreva seu CPF\n");
+   gotoxy(15,15);printf("->  ");
+   scanf("%s", &c.cpf);
+   fflush(stdin);  
+   
+   gotoxy(15,16);printf("Escreva sua data de nascimento\n");
+   gotoxy(15,17);printf("->  ");
+   scanf("%s", &c.data);
+   fflush(stdin);
+   
+   system("cls");
+   tela(10,7,80,25,7,4);
+   
+   gotoxy(15,10);printf("Escreva o nome dele\n");
+   gotoxy(15,11);printf("->  ");
+   fgets(c.nomed, 200, stdin);
+   
+   gotoxy(15,12);printf("Escreva o CPF dele\n");
+   gotoxy(15,13);printf("->  ");
+   scanf("%s", &c.cpfd);
+   fflush(stdin);
+   
+   gotoxy(15,14);printf("Escreva a data de nascimento dele\n");
+   gotoxy(15,15);printf("->  ");
+   scanf("%s", &c.datad);
+   fflush(stdin);
+   
+   system("cls");
+   tela(10,7,80,25,7,4);
+   
+   gotoxy(15,10);printf("Escreva nome da rua com o numero da casa\n");
+   gotoxy(15,11);printf("->  ");
+   fgets(c.rua, 1000, stdin);
+   
+   parada=getch();   
+}
+//-----------------------------------------------------------------------------   
+void pedidos (){
+ int op=1, x; 
+ char tecla;  
+  do{ 
+   
+   textbackground(4);
+   textcolor(15);
+   
+   system("cls");
+   tela(10,7,80,25,7,4);
+   
+   
+   textcolor(0);
+   textbackground(15);
+     
+    gotoxy(27,10);      printf (" 1 ");         
+    gotoxy(20,11); printf(" pizza de peperoni ");
+    gotoxy(57,10);      printf (" 2 ");
+    gotoxy(50,11); printf(" pizza de mussarela ");
+    
+    gotoxy(19,13); printf (" essa pizza informa  ");         
+    gotoxy(17,14); printf(" a policia uma violencia ");
+    gotoxy(23,15); printf(" domestica ");
+    gotoxy(49,13); printf (" essa pizza informa ");
+    gotoxy(47,14); printf(" a policia uma violencia ");
+    gotoxy(52,15); printf(" no trabalho ");
+     
+     
+    textcolor(0);
+   textbackground(15);
+    
+   gotoxy(30,21); printf("escolha sua pizza: ");
+   scanf("%d", &x);
+   if (x == 1){
+      switch (op){
+           case 1:
+                gotoxy(48,21); printf(" peperoni ");
+                system("cls");
+                tela(10,7,80,25,7,4);
+                textbackground(4);
+                textcolor(15);
+                                  
+                gotoxy(28,14);printf("sua denuncia foi computada");
+                gotoxy(28,15);printf("como violencia domestica");
+                gotoxy(28,16);printf("estamos enviando uma viatura");
+                gotoxy(28,17);printf("até sua residencia");
+                textbackground(4);
+                textcolor(15);
+                gotoxy(70,23);printf("voltar");  
+          break;
+      }
+   }            
+   else {
+        x == 2; 
+       switch (op){
+              case 1:
+                   gotoxy(48,21); printf(" mussarela "); 
+                   system("cls");
+                   tela(10,7,80,25,7,4);
+                   textbackground(4);
+                   textcolor(15);
+                   gotoxy(28,14);printf(" sua denuncia foi computada ");
+                   gotoxy(28,15);printf(" como violencia no trabalho ");
+                   gotoxy(28,16);printf(" faremos o boletim e enviaremos ");
+                   gotoxy(28,17);printf(" uma viatura para seu local ");
+                   gotoxy(28,18);printf(" de trabalho ");
+                   textbackground(4);
+                   textcolor(15);
+                   gotoxy(70,23);printf("voltar");       
+                   break; 
+       }
+   }        
+      
+          tecla=getch();            
+    if (tecla<0)
+      tecla=getch();
+          
+    switch (tecla){
+       case 72:  
+         if (op-1>=1)
+             op--; 
+             else
+             op=2;
+         break;    
+       case 80:  
+         if (op+1<=2)
+             op++;
+             else
+             op=1;
+         break;
+       case 13: 
+       
+         textbackground(4);
+         
+parada=getch();
+break;              
+}
+}
+while (tecla!=13);
+}
+//-------------------------------------------------------------------------
+void retirada (){
+   
+   textbackground(4);
+   textcolor(15);
+   system("cls");
+   tela(10,7,80,25,7,4);
+   
+   char loc1[100] = {"DELEGACIA DA MULHER"};
+   char loc2[100] = {"Secretaria da Mulher"};
+   char loc3[100] = {"CRAMMM"};
+   char end1[200] = {"Avenida Julio Meneguetti,195"};
+   char end2[200] = {"Av. Papa João XXIII,497"};
+   char end3[200] = {"Rua Vaz Caminha, 160"};
+   int tel1 = {32202500};
+   int tel2 = {32938350};
+   int tel3 = {39018828};
+   
+   gotoxy(11,9); printf("        NOME                   RUA                      TELEFONE");
+   gotoxy(11,10); printf(" %s   %s     %d", loc1, end1, tel1);
+   
+   gotoxy(11,14); printf("        NOME                   RUA                      TELEFONE");
+   gotoxy(11,15); printf(" %s      %s      %d", loc2, end2, tel2);
+   
+   gotoxy(11,18); printf("        NOME                   RUA                      TELEFONE");
+   gotoxy(11,19); printf("       %s             %s          %d", loc3, end3, tel3);
+      
+   parada=getch();    
+}
+//-----------------------------------------------------------------------------
+void dadoscad (){
+   
+   textbackground(4);
+   textcolor(15);
+   system("cls");
+   tela(10,7,80,25,7,4);
+   
+   gotoxy(15,9);  printf("Seu nome: %s",c.nome);
+   gotoxy(15,11); printf("Seu celular: %s",c.cel);
+   gotoxy(15,13); printf("Seu cpf: %s",c.cpf);
+   gotoxy(15,15); printf("Sua data de nascimento: %s",c.data);
+   gotoxy(15,17); printf("Nome do marido: %s",c.nomed);
+   gotoxy(15,19); printf("Cpf do marido: %s",c.cpfd);
+   gotoxy(15,21); printf("Data de nascimento do marido: %s",c.datad);
+   gotoxy(15,23); printf("Sua rua é: %s",c.rua);
+   
+   parada=getch();              
+}
+//-----------------------------------------------------------------------------   
+void creditos(){
+   
+   textbackground(4);
+   textcolor(15);
+   system("cls");
+   tela(10,7,80,25,7,4);
+   
+   gotoxy(38,10); printf("C R É D I T O S");
+   Sleep(400);
+   gotoxy(23,12); printf("|-------ATIVIDADE DE ESTUDO PROGRAMADA-------|");
+   Sleep(400);
+   gotoxy(25,14); printf("Programa desenvolvido para apresentação de        ");
+   Sleep(400);
+   gotoxy(25,15); printf("Soluções inovadoras para a prefeitura de maringá. ");
+   Sleep(400);
+   gotoxy(25,16); printf("O qual escolhemos criar uma solução para a ");
+   Sleep(400);
+   gotoxy(25,17); printf("A Secretaria Municipal de Políticas Públicas para");
+   Sleep(400);
+   gotoxy(25,18); printf("Mulher. ");
+   Sleep(400);
+   gotoxy(25,19); printf("Para este trabalho, contamos com o auxílio das matérias");
+   Sleep(400);
+   gotoxy(25,20); printf("De Algoritmos e Lógica para Programação II, ");
+   Sleep(400);
+   gotoxy(25,21); printf("Engenharia de Software,Matemática para Computação II e");
+   Sleep(400);
+   gotoxy(25,22); printf("Arquitetura de Computadores II");
+   Sleep(400);
+   gotoxy(12,23); printf("AUTORES: Gustavo Américo Rosa, Felipe Fazzano, ");
+   Sleep(400);
+   gotoxy(12,24); printf("João Victor Paulucci e o Francisco Dambrosio ");
+   Sleep(400);
+ 
+   
+   parada=getch();              
+}
+//-----------------------------------------------------------------------------   
+void menu(){ 
+int op=1; 
+char tecla;
+ do{ 
+      
+   textcolor(15);
+   textbackground(4);
+   
+   system("cls");
+   tela(10,7,80,25,7,4);
+   
+   textcolor(0);
+   textbackground(15);
+   
+    gotoxy(13,7);printf(" D D o n (Disk Denúncia Online)");
+    
+    textbackground(4);
+    
+    gotoxy(25,9);printf("   _     ______                       _");
+    gotoxy(25,10);printf(" |_|   |  ____|                     | |");
+    gotoxy(25,11);printf("  _    | |___    ____    ____       | |");
+    gotoxy(25,12);printf(" | |   |  ___|  | __ |  | __ |   ___| |");
+    gotoxy(25,13);printf(" | |   | |      ||  ||  ||  ||  |  _  |");
+    gotoxy(25,14);printf(" | |   | |      ||__||  ||__||  | |_| |");
+    gotoxy(25,15);printf(" |_|   |_|      |____|  |____|  |_____|");
+
+   textcolor(15);
+   textbackground(4);
+   
+   gotoxy(15,18); printf(" Seus Pedidos  ");
+   gotoxy(15,19); printf(" Lugares para Retirada  ");
+   gotoxy(15,20); printf(" dados cadastrados  ");
+   gotoxy(15,21); printf(" Créditos  ");
+   gotoxy(65,22); printf(" Sair  ");
+      
+   textcolor(15);
+   textbackground(0);
+      
+   switch (op){
+      case 1:
+         gotoxy(15,18); printf(" Seus Pedidos  ");      
+         break; 
+      case 2:
+         gotoxy(15,19); printf(" Lugares para Retirada  ");      
+         break; 
+      case 3:
+         gotoxy(15,20); printf(" dados cadastrados  ");      
+         break; 
+      case 4:
+         gotoxy(15,21); printf(" Créditos  ");      
+         break; 
+      case 5:
+         gotoxy(65,22); printf(" Sair  ");      
+         break;           
+}       
+    tecla=getch();  
+    if (tecla<0)
+      tecla=getch();
+          
+    switch (tecla){
+       case 72:  
+         if (op-1>=1)
+             op--; 
+             else
+             op=5;
+         break;    
+       case 80:  
+         if (op+1<=5)
+             op++;
+             else
+             op=1;
+         break;
+       case 13: 
+         switch (op){
+                
+            case 1:
+                 pedidos();   
+                 break;
+                 
+            case 2:            
+                 retirada();
+                 break;
+                 
+            case 3:                 
+                 dadoscad();
+                 break;
+                 
+            case 4:
+                 creditos();
+                 break;
+                 
+            case 5:
+                 tecla=27; 
+                 break;                    
+                }                             
+         break;                           
+    }  
+  } 
+  while (tecla!=27);  
+}  
+//-----------------------------------------------------------------------------   
+void menu2(){ 
+int op=1; 
+char tecla;
+do{ 
+   
+   textbackground(4);
+   textcolor(15);
+   
+   system("cls");
+   tela(10,3,50,25,7,4);
+   
+   textcolor(0);
+   textbackground(15);
+    gotoxy(13,7);printf(" D D o n (Disk DenÃºncia On Line) ");
+    textbackground(4);
+    
+    gotoxy(14,10);printf("  ____    ____                  ");
+    gotoxy(14,11);printf(" |  _  ) |  _  )  ____   _    _  ");
+    gotoxy(14,12);printf(" | | | | | | | | | __ | | \  | | ");
+    gotoxy(14,13);printf(" | | | | | | | | ||  || | |\ | | ");
+    gotoxy(14,14);printf(" | |_| | | |_| | ||__|| | | \| | ");
+    gotoxy(14,15);printf(" |____/  |____/  |____| |_|  \_| ");
+           
+   textcolor(15);
+   textbackground(4);
+      
+  gotoxy(13,19); printf("cadastrar dados ");
+  gotoxy(13,21); printf(" proximo ");
+  
+  textcolor(15);
+   textbackground(0);
+    switch (op){
+           case 1:
+          gotoxy(13,19); printf("cadastrar dados ");
+          break;
+          
+          case 2:
+          gotoxy(13,21); printf(" proximo ");       
+          break;
+      }        
+   
+          tecla=getch();            
+    if (tecla<0)
+      tecla=getch();
+          
+    switch (tecla){
+       case 72:  
+         if (op-1>=1)
+             op--; 
+             else
+             op=2;
+         break;    
+       case 80: 
+         if (op+1<=2)
+             op++;
+             else
+             op=1;
+         break;
+       case 13: 
+       
+         textbackground(4);
+         switch (op){
+                case 1:
+                     system("cls");
+                     tela(10,7,80,25,7,4);
+                     cadastro(); 
+                 break;
+                 
+            case 2:            
+                tecla=13; 
+                 break;                                                              
+}
+break;              
+}
+}
+while (tecla!=13);
+}  
+//-----------------------------------------------------------------------------
+int main(){
+  setlocale(LC_ALL,"portuguese");	
+
+  CONSOLE_CURSOR_INFO cursor = {1,FALSE};
+  SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &cursor);
+  
+  menu2();
+  menu();
+ 
+  return(0);
+}
